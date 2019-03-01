@@ -1,0 +1,33 @@
+As attachment you have two functions: 
+
+- the problem function in the routine D_C.p (expensive), and 
+
+- the auxiliary function in the routine D_C_2T.p (not expensive)
+
+
+
+Both functions take as input a design vector bounded as
+
+Lower bounds LB = [0, 0, 0, 0, 0, 0]
+
+Upper bounds UB = [6, 10, 6, 10, 6, 10]
+
+and gives as output a vector, F, of two elements: [F(1), F(2)]
+
+ 
+
+The problem is aimed at minimising both F(1) and F(2) given by the expensive routine D_C.p
+
+ 
+
+The steps to perform are:
+
+a)     Implement a strategy (NO surrogate based) to find a good approximation of the ENTIRE Pareto front with at most 50000 
+       function evaluations using the auxiliary function in the file D_C_2T.p; the strategy should be reliable and should be tested on 
+       10 independent runs.
+
+b)     Implement a SURROGATE based strategy to find a good approximation of the ENTIRE Pareto front with at most 300 function 
+       evaluations of the true auxiliary function in D_C_2T.p; the strategy should be reliable and should be tested on 10 independent runs.
+
+c)     Use the SURROGATE based strategy developed at point b) to find the best approximation of the Pareto front for the problem function 
+       implemented in D_C.p (the expensive routine) with at most 300 function evaluations of the the expensive function.
