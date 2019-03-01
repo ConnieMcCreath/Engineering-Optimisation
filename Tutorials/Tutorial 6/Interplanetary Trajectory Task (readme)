@@ -1,0 +1,7 @@
+Interplanetary trajectory tutorial:
+
+hidden function
+18 design variables 
+computational budget: 1500000 function evaluations per run
+
+Task: maximise budget
