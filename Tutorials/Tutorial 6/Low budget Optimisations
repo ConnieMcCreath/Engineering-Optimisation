@@ -1,0 +1,41 @@
+close all
+clc
+
+load messenger.mat
+
+
+x0=rand(1,18);
+foptions.prob=MGADSMproblem;
+
+nfev=20000;
+fobj=@(x)mask_messenger(x,foptions); %name of the routine computing the obj function
+fcon=[]; %name of the routine computing the constraints
+optionsNLP=optimset('Display','iter','MaxFunEvals',nfev,'LargeScale','off','Algorithm','sqp','TolX',1e-9,'TolFun',1e-6,'ScaleProblem','obj-and-constr');
+disp('Start FMINCON')
+[xoptimal,foptimal,exitflag,output]=fmincon(fobj,x0,[],[],[],[],zeros(1,18),ones(1,18),fcon,optionsNLP);
+disp('End FMINCON')
+
+
+maxE=output.funcCount*1000;
+optionsSA = optimoptions(@simulannealbnd,'MaxIterations',maxE,'InitialTemperature',1000,'Display','iter');
+disp('Start simulannealbnd')
+[xopt,fval,exitFlagSA,outputSA] = simulannealbnd(fobj,x0,zeros(1,18),ones(1,18),optionsSA);
+disp('Start simulannealbnd')
+disp(' ')
+disp(' ')
+disp('*******************************')
+disp('Result obtained via FMINCON')
+disp('Optimal objective function')
+disp(foptimal)
+disp('Number of model evaluations with FMINCON')
+disp(output.funcCount)
+disp(' ')
+disp('*******************************')
+disp(' ')
+disp('Result obtained via simulannealbnd')
+disp('Optimal objective function')
+disp(fval)
+disp('Number of model evaluations with simulannealbnd')
+disp(outputSA.funccount)
+
+
