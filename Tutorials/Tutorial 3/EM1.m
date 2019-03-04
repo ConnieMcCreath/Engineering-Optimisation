@@ -24,4 +24,3 @@ end
 if nargin==1
     fv=[fv;f x];
 end
-
